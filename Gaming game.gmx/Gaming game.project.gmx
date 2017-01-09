@@ -7,9 +7,21 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_hey</sprite>
+    <sprite>sprites\spr_box</sprite>
+    <sprite>sprites\spr_wall</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <objects name="objects">
+    <object>objects\obj_player</object>
+    <object>objects\obj_right</object>
+    <object>objects\obj_left</object>
+    <object>objects\obj_wall</object>
+    <object>objects\obj_jump</object>
+  </objects>
+  <rooms name="rooms">
+    <room>rooms\rm_test</room>
+  </rooms>
   <help>
     <rtf>help.rtf</rtf>
   </help>
