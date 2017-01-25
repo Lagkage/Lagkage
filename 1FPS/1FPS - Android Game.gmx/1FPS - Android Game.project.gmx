@@ -38,10 +38,13 @@
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
+<<<<<<< HEAD
   <fonts name="fonts">
     <font>fonts\fnt_end</font>
     <font>fonts\fnt_in_game</font>
   </fonts>
+=======
+>>>>>>> origin/master
   <objects name="objects">
     <objects name="Buttons">
       <object>objects\obj_start</object>
