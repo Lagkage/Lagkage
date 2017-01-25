@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.draw_help = 0;
+            <string>h = room_height;
+w = room_width;
+ideal_h = h/2+((h/2)/2)+(((h/2)/2)/2)+16
+ideal_w = w/2+((w/2)/2)+((((w/2)/2)/2/2))
+global.draw_help = 0;
 </string>
           </argument>
         </arguments>
@@ -50,7 +54,7 @@
             <kind>1</kind>
             <string>if global.draw_help = 1
 {
-    instance_create(700, 500, obj_help_close);
+    instance_create(ideal_w-72, ideal_h-26, obj_help_close);
 }
 </string>
           </argument>
@@ -104,19 +108,34 @@ draw_self()
 if global.draw_help = 1
 {
     // "Help" Frame
-    draw_sprite(spr_help_menu, 0, 512, 352);
+    draw_sprite(spr_help_menu, 0, room_width/2, room_height/2);
     
-    // Button Outline
+        // Button Outline
     draw_set_colour(c_black);
-    draw_rectangle(698, 498, 801, 531, false);
+    draw_rectangle(ideal_w-74, ideal_h-26, ideal_w+44, ideal_h+18, false);
     
     // Button
     draw_set_color(c_white);
-    draw_button(700, 500, 800, 530, true);
+    draw_button(ideal_w-72, ideal_h-24, ideal_w+42, ideal_h+16, true);
     
     // "Exit Help" Text
     draw_set_colour(c_black);
-    draw_text(750, 507, "Close Help");
+    draw_text(ideal_w-18, ideal_h-12, "Close Help");
+    
+    // Tutorial
+    draw_set_colour(c_black);
+    draw_sprite(spr_standard, 0, room_width/2, 135);
+    draw_sprite(spr_increase, 0, room_width/2, 135*2);
+    draw_sprite(spr_height, 0, room_width/2, 135*3);
+    draw_sprite(spr_ammo, 0, room_width/2, 135*4);
+    draw_sprite(spr_ring, 0, room_width/2, 135*5);
+    
+    draw_set_halign(fa_middle);
+    draw_text(room_width/2, 135+36, "You die if this block falls on you")
+    draw_text(room_width/2, (135*2)+36, "Time becomes faster and your score gets bigger")
+    draw_text(room_width/2, (135*3)+36, "This will make you jump higher")
+    draw_text(room_width/2, (135*4)+36, "This is the 'ammo' block... Funny enough, this gives you ammo. # Just touch the screen above your character and he shoots")
+    draw_text(room_width/2, (135*5)+36, "DO NOT TOUCH THIS BLOCK NO MATTER WHAT!")
 }
 </string>
           </argument>

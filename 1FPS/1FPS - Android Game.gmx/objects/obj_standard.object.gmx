@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>move_snap(32, y);
 
-if not place_meeting(x,y+1,obj_wall)
+if not place_meeting(x,y+1,obj_wall) and not place_meeting(x,y+1,obj_ring)
 {
     y += 5;
 }
@@ -37,10 +37,12 @@ if place_meeting(x, y+1, obj_player)
     instance_create(0, 0, obj_end)
 }
 
-if place_meeting(x, y, obj_bullet)
+if place_meeting(x, y, obj_bullet) or place_meeting(x, y, obj_debugger)
 {
     instance_destroy();
 }
+
+
 </string>
           </argument>
         </arguments>

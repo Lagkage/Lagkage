@@ -28,7 +28,7 @@
             <string>// Variables To Set Room Size
 global.device_w = display_get_width();
 global.device_h = display_get_height();
-global.height = 1024;
+global.height = 1280;
 global.width = round((global.device_w / global.device_h)* global.height);
 
 // Change Room Size

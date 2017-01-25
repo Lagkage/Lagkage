@@ -4,7 +4,10 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\snd_menu</sound>
+    <sound>sound\snd_game</sound>
+  </sounds>
   <sprites name="sprites">
     <sprites name="Game">
       <sprite>sprites\spr_floor</sprite>
@@ -14,6 +17,7 @@
       <sprite>sprites\spr_ammo</sprite>
       <sprite>sprites\spr_height</sprite>
       <sprite>sprites\spr_bullet</sprite>
+      <sprite>sprites\spr_pause</sprite>
     </sprites>
     <sprites name="Player">
       <sprite>sprites\spr_player</sprite>
@@ -24,6 +28,7 @@
       <sprite>sprites\spr_help_menu</sprite>
       <sprite>sprites\spr_title</sprite>
       <sprite>sprites\spr_menu_button</sprite>
+      <sprite>sprites\spr_help_mask</sprite>
     </sprites>
     <sprites name="Controls">
       <sprite>sprites\spr_jump</sprite>
@@ -33,15 +38,16 @@
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
-  <scripts name="scripts"/>
+  <fonts name="fonts">
+    <font>fonts\fnt_end</font>
+    <font>fonts\fnt_in_game</font>
+  </fonts>
   <objects name="objects">
     <objects name="Buttons">
-      <objects name="Menu">
-        <object>objects\obj_start</object>
-        <object>objects\obj_help</object>
-        <object>objects\obj_exit</object>
-        <object>objects\obj_help_close</object>
-      </objects>
+      <object>objects\obj_start</object>
+      <object>objects\obj_help</object>
+      <object>objects\obj_help_close</object>
+      <object>objects\obj_exit</object>
     </objects>
     <objects name="Game">
       <object>objects\obj_floor</object>
@@ -54,6 +60,10 @@
       <object>objects\obj_end</object>
       <object>objects\obj_wall</object>
       <object>objects\obj_bullet</object>
+      <object>objects\obj_debugger</object>
+      <object>objects\obj_music</object>
+      <object>objects\obj_pause</object>
+      <object>objects\obj_score</object>
     </objects>
     <objects name="Player">
       <object>objects\obj_player</object>
@@ -69,7 +79,6 @@
     <room>rooms\rm_init</room>
     <room>rooms\rm_menu</room>
     <room>rooms\rm_game</room>
-    <room>rooms\rm_music</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

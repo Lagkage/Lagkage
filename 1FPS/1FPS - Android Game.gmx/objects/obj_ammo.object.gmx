@@ -34,8 +34,11 @@ if not place_meeting(x,y+1,obj_wall)
 
 if place_meeting(x-1, y+1, obj_player) or place_meeting(x+1, y-1, obj_player)
 {
-    global.ammo += 1;
     instance_destroy();
+    with obj_player
+    {
+        ammo += 1;
+    }
 }
 
 if place_meeting(x, y-2, obj_standard) or place_meeting(x, y-2, obj_ring)

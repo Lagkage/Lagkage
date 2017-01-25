@@ -32,7 +32,16 @@ if not place_meeting(x, y+1, obj_wall)
     y += 5;
 }
 
-if place_meeting(x-1, y+1, obj_player) or place_meeting(x+1, y-1, obj_player) or place_meeting(x, y-2, obj_standard) or place_meeting(x, y-2, obj_ring)
+if place_meeting(x, y, obj_player)
+{
+    instance_destroy();
+    with obj_player
+    {
+        jumpspeed += 0.5
+    }
+}
+
+if place_meeting(x, y-2, obj_standard) or place_meeting(x, y-2, obj_ring)
 {
     instance_destroy();
 }

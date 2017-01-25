@@ -25,13 +25,15 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>grav = 0.2;
+            <string>audio_stop_sound(snd_menu);
+
+grav = 0.2;
 hsp = 0;
 vsp = 0;
-jumpspeed = 5;
+jumpspeed = 4.5;
 movespeed = 5;
 
-global.ammo = 0;
+ammo = 0;
 </string>
           </argument>
         </arguments>
@@ -55,7 +57,7 @@ global.ammo = 0;
           <argument>
             <kind>1</kind>
             <string>//Get the player's input
-key_shoot = mouse_check_button_pressed(mb_left) &amp;&amp; point_in_rectangle(mouse_x, mouse_y, 224, 0, 768, 512);
+key_shoot = mouse_check_button_pressed(mb_left) &amp;&amp; point_in_rectangle(mouse_x, mouse_y, 0, 96, 768, 704);
 key_right = mouse_check_button(mb_left) &amp;&amp; position_meeting(mouse_x, mouse_y, obj_right);
 key_left = mouse_check_button(mb_left) &amp;&amp; position_meeting(mouse_x, mouse_y, obj_left);
 key_jump = mouse_check_button_pressed(mb_left) &amp;&amp; position_meeting(mouse_x, mouse_y, obj_jump);
@@ -96,19 +98,137 @@ if place_meeting(x, y+vsp, obj_wall)
 }
 y += vsp;
 
-if place_meeting(x, y, obj_height)
+// Shoot
+if key_shoot and ammo &gt; 0
 {
-    jumpspeed += 0.45;
+    instance_create(x, y-2, obj_bullet);
+    ammo -= 1;
 }
 
-if key_shoot
+if jumpspeed &gt; 7.5
 {
-    if global.ammo &gt; 0
+    jumpspeed = 7.5
+}
+
+///Button Animations
+// Right Key
+if mouse_check_button_pressed(mb_left) &amp;&amp; position_meeting(mouse_x, mouse_y, obj_right)
+{
+    with obj_right
     {
-        instance_create(x, y-2, obj_bullet);
-        global.ammo -= 1;
+        image_xscale = 0.8
+        image_yscale = 0.8
     }
-} 
+}
+
+if mouse_check_button_released(mb_left) &amp;&amp; position_meeting(mouse_x, mouse_y, obj_right)
+{
+    with obj_right
+    {
+        image_xscale = 1.2
+        image_yscale = 1.2
+    }
+}
+
+// --------
+// Left Key
+if mouse_check_button_pressed(mb_left) &amp;&amp; position_meeting(mouse_x, mouse_y, obj_left)
+{
+    with obj_left
+    {
+        image_xscale = 0.8
+        image_yscale = 0.8
+    }
+}
+
+if mouse_check_button_released(mb_left) &amp;&amp; position_meeting(mouse_x, mouse_y, obj_left)
+{
+    with obj_left
+    {
+        image_xscale = 1.2
+        image_yscale = 1.2
+    }
+}
+
+// --------
+// Jump Key
+if mouse_check_button_pressed(mb_left) &amp;&amp; position_meeting(mouse_x, mouse_y, obj_jump)
+{
+    with obj_jump
+    {
+        image_xscale = 0.8
+        image_yscale = 0.8
+    }
+}
+
+if mouse_check_button_released(mb_left) &amp;&amp; position_meeting(mouse_x, mouse_y, obj_jump)
+{
+    with obj_jump
+    {
+        image_xscale = 1.2
+        image_yscale = 1.2
+    }
+}
+
+// End Game
+if instance_exists(obj_end)
+{
+    global.game_score += 0;
+    instance_deactivate_all(false)
+    audio_stop_sound(snd_game);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>instance_destroy();
+instance_create(x, y, obj_end);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_self()
+draw_set_color(c_black);
+draw_set_halign(fa_left);
+draw_text(20, 37, "Ammo: " + string(ammo));
+draw_text(20, 3, "FPS: " +string(room_speed));
+draw_text(20, 20, "Score: " + string(global.game_score));
 </string>
           </argument>
         </arguments>
